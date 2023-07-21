@@ -14,15 +14,19 @@ static void timer_callback(uv_timer_t *handle) {
     }
 }
 
-int main()
-{
-    app_start_time = uv_hrtime();
-
-    uv_loop_t *loop = uv_default_loop();
+static void timer_test(uv_loop_t *loop) {
     uv_timer_t timer_req;
 
     uv_timer_init(loop, &timer_req);
     uv_timer_start(&timer_req, timer_callback, 0, 2000);
+}
+
+int main()
+{
+    app_start_time = uv_hrtime();
+    uv_loop_t *loop = uv_default_loop();
+    timer_test(loop);
+
 
     uv_run(loop, UV_RUN_DEFAULT);
     uv_loop_close(loop);
