@@ -1,0 +1,4 @@
+build
+libuv.a
+uv.h
+include/uv
